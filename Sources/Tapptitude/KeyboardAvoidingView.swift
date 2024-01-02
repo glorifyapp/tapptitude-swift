@@ -45,7 +45,6 @@ class KeyboardAvoidingView: UIView {
         super.awakeFromNib()
         
         assert(toInvalidateLayoutView != nil, "Please connect toInvalidateLayoutView outlet --> view for which layout should be invalidated")
-        assert(heightConstraint.constant == 0.0, "Height constraint is changed in response to keyboard frame changes, please add a constraint")
     }
     
     public var heightConstraint: NSLayoutConstraint! {
