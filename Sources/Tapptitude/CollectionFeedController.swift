@@ -538,7 +538,6 @@ open class __CollectionFeedController: UIViewController, TTDataFeedDelegate, TTD
 //extension CollectionFeedController : UICollectionViewDataSource {
     
     open func numberOfSections(in collectionView: UICollectionView) -> Int {
-        assert(_cellController != nil, "cellController is nil, please set self.cellController = ...(YourCellController)")
         guard let dataSource = self._dataSource else {
             return 0
         }
