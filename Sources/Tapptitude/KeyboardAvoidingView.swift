@@ -41,12 +41,6 @@ class KeyboardAvoidingView: UIView {
         NotificationCenter.default.removeObserver(self)
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        assert(toInvalidateLayoutView != nil, "Please connect toInvalidateLayoutView outlet --> view for which layout should be invalidated")
-    }
-    
     public var heightConstraint: NSLayoutConstraint! {
         return constraints.first(where: { $0.firstItem === self && $0.firstAttribute == .height
                                         || $0.secondItem === self && $0.secondAttribute == .height })
