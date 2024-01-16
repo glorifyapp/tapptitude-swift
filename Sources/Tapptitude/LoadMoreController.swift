@@ -89,14 +89,6 @@ open class LoadMoreFooterController: NSObject, TTLoadMoreController {
         let kind = UICollectionView.elementKindSectionFooter
         if shouldShowLoadMoreViewInSection(indexPath.section, collectionView: collectionView) {
             let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: loadMoreViewXIBName, for: indexPath)
-            if let loadMoreView = reusableView as? LoadMoreView {
-                loadMoreView.loadingView?.isHidden = false
-//                loadMoreView.loadingView?.color = options.loadMoreIndicatorViewColor
-                loadMoreView.startAnimating()
-
-//                dataSource.feed?.loadMore()
-            }
-
             return reusableView
         }
         
