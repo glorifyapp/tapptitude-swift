@@ -80,9 +80,7 @@ open class LoadMoreFooterController: NSObject, TTLoadMoreController {
         }
     }
     open func registLoadMoreView(in collectionView: UICollectionView) {
-        let isInTappLibrary = Bundle(for: __CollectionFeedController.self).path(forResource: loadMoreViewXIBName, ofType: "nib") != nil
-        let bundle: Bundle? = isInTappLibrary ? Bundle(for: __CollectionFeedController.self) : nil
-        let nib = UINib(nibName: loadMoreViewXIBName, bundle: bundle)
+        let nib = UINib(nibName: loadMoreViewXIBName, bundle: .module)
         collectionView.register(nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: loadMoreViewXIBName)
     }
 
@@ -289,13 +287,17 @@ open class TableLoadMoreController: NSObject {
     }()
     
     open func defaultLoadMoreView() -> UIView {
-        let loadMoreViewXIBName = "LoadMoreView"
-        let isInTappLibrary = Bundle(for: __TableFeedController.self).path(forResource: loadMoreViewXIBName, ofType: "nib") != nil
-        let bundle: Bundle? = isInTappLibrary ? Bundle(for: __TableFeedController.self) : nil
-        let nib = UINib(nibName: loadMoreViewXIBName, bundle: bundle)
-        let view = nib.instantiate(withOwner: nil, options: nil).last as! LoadMoreView
-        view.startAnimating()
-        return view
+        let loadingIndicator: UIActivityIndicatorView
+        
+        if #available(iOS 13.0, *) {
+            loadingIndicator = UIActivityIndicatorView(style: .medium)
+        } else {
+            loadingIndicator = UIActivityIndicatorView(style: .gray)
+        }
+        
+        loadingIndicator.startAnimating()
+        
+        return loadingIndicator
     }
     
     open func updateCanShowLoadMoreView(for feed: TTDataFeed?,  animated: Bool) {
