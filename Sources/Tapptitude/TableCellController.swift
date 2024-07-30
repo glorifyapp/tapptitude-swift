@@ -64,11 +64,7 @@ open class TableCellController<ContentName, CellName: UITableViewCell>: TTTableC
     }
     
     open func nibToInstantiateCell(reuseIdentifier: String) -> UINib? {
-        if let _ = Bundle.module.url(forResource: "CellType", withExtension: "nib") {
-            return UINib(nibName: reuseIdentifier, bundle: Bundle.module)
-        } else {
-            return nil
-        }
+        fatalError("Sub-class should override")
     }
     
     open func reuseIdentifier(for content: ContentType) -> String {
