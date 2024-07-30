@@ -92,8 +92,8 @@ open class CollectionCellController<ContentName, CellName: UICollectionViewCell>
     }
     
     open func nibToInstantiateCell(reuseIdentifier: String) -> UINib? {
-        if let _ = Bundle(for: CellType.self).path(forResource: reuseIdentifier, ofType: "nib") {
-            return UINib(nibName: reuseIdentifier, bundle: Bundle(for: CellType.self))
+        if let _ = Bundle.module.url(forResource: "CellType", withExtension: "nib") {
+            return UINib(nibName: reuseIdentifier, bundle: Bundle.module)
         } else {
             return nil
         }
