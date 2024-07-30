@@ -80,8 +80,8 @@ open class LoadMoreFooterController: NSObject, TTLoadMoreController {
         }
     }
     open func registLoadMoreView(in collectionView: UICollectionView) {
-        let isInTappLibrary = Bundle(for: __CollectionFeedController.self).path(forResource: loadMoreViewXIBName, ofType: "nib") != nil
-        let bundle: Bundle? = isInTappLibrary ? Bundle(for: __CollectionFeedController.self) : nil
+        let isInTappLibrary = Bundle.module.url(forResource: String(describing: __CollectionFeedController.self), withExtension: "nib") != nil
+        let bundle: Bundle? = isInTappLibrary ? Bundle.module : nil
         let nib = UINib(nibName: loadMoreViewXIBName, bundle: bundle)
         collectionView.register(nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: loadMoreViewXIBName)
     }
@@ -290,8 +290,8 @@ open class TableLoadMoreController: NSObject {
     
     open func defaultLoadMoreView() -> UIView {
         let loadMoreViewXIBName = "LoadMoreView"
-        let isInTappLibrary = Bundle(for: __TableFeedController.self).path(forResource: loadMoreViewXIBName, ofType: "nib") != nil
-        let bundle: Bundle? = isInTappLibrary ? Bundle(for: __TableFeedController.self) : nil
+        let isInTappLibrary = Bundle.module.url(forResource: loadMoreViewXIBName, withExtension: "nib") != nil
+        let bundle: Bundle? = isInTappLibrary ? Bundle.module : nil
         let nib = UINib(nibName: loadMoreViewXIBName, bundle: bundle)
         let view = nib.instantiate(withOwner: nil, options: nil).last as! LoadMoreView
         view.startAnimating()
