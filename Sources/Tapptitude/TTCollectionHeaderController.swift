@@ -39,7 +39,11 @@ extension TTCollectionHeaderController {
     
     public func nibToInstantiate(for content: Any) -> UINib? {
         let reuseIdentifier = self.reuseIdentifier(for: content)
-        fatalError("Sub-class should override")
+        if let _ = Bundle.module.url(forResource: "HeaderType", withExtension: "nib") {
+            return UINib(nibName: reuseIdentifier, bundle: Bundle.module)
+        } else {
+            return nil
+        }
     }
     
     public func headerSize(for content: Any, in collectionView: UICollectionView) -> CGSize {
