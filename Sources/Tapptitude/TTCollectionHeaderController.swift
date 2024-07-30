@@ -37,6 +37,11 @@ extension TTCollectionHeaderController {
         return HeaderType.self
     }
     
+    public func nibToInstantiate(for content: Any) -> UINib? {
+        let reuseIdentifier = self.reuseIdentifier(for: content)
+        fatalError("Sub-class should override")
+    }
+    
     public func headerSize(for content: Any, in collectionView: UICollectionView) -> CGSize {
         return headerSize(for: content as! ContentType, in: collectionView)
     }
@@ -62,10 +67,6 @@ open class CollectionHeaderController<ItemType, HeaderName: UICollectionReusable
     public init(headerSize : CGSize, reuseIdentifier:String? = nil) {
         self.headerSize = headerSize
         self.reuseIdentifier = reuseIdentifier ?? String(describing: HeaderType.self)
-    }
-    
-    open func nibToInstantiate(for content: Any) -> UINib? {
-        fatalError("Sub-class should override")
     }
     
     open func reuseIdentifier(for content: ContentType) -> String {
