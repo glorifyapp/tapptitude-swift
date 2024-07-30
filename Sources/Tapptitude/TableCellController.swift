@@ -64,7 +64,7 @@ open class TableCellController<ContentName, CellName: UITableViewCell>: TTTableC
     }
     
     open func nibToInstantiateCell(reuseIdentifier: String) -> UINib? {
-        if let _ = Bundle.module.url(forResource: "CellType", withExtension: "nib") {
+        if let _ = Bundle.module.url(forResource: String(describing: CellType.self), withExtension: "nib") {
             return UINib(nibName: reuseIdentifier, bundle: Bundle.module)
         } else {
             return nil
